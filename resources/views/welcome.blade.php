@@ -39,7 +39,7 @@
   									<h4 class="info-title">Atendemos tus dudas</h4>
   									<p> Atendemos rápidamente cualquier consulta que tengas vía chat. No estas sólo , sino que siempre estamos atentos a tus inquietudes. </p>
   								</div>
-  		                    </div>
+  		            </div>
   		           <div class="col-md-4">
     								<div class="info">
     									<div class="icon icon-success">
