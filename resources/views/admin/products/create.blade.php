@@ -13,6 +13,17 @@
   			<div class="container">
   	      <div class="section">
             <h2 class="title text-center">Registrar nuevo producto</h2>
+
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+              </div>
+            @endif
+
             <form class="" action="{{ url('/admin/products') }}" method="post">
               {{ csrf_field() }}
 
@@ -21,13 +32,13 @@
                 <div class="col-sm-6">
                   <div class="form-group label-floating">
                     <label class="control-label">Nombre del Producto</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" value="{{ old('name')}}">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group label-floating">
                     <label class="control-label">Precio</label>
-                    <input type="number" class="form-control" name="price">
+                    <input type="number" class="form-control" name="price" value="{{ old('price')}}">
                   </div>
                 </div>
 
@@ -35,18 +46,15 @@
 
                 <div class="form-group label-floating">
                   <label class="control-label">Descripcion Corta</label>
-                  <input type="text" class="form-control" name="description">
+                  <input type="text" class="form-control" name="description" value="{{ old('description')}}">
                 </div>
-
-
-
-
-
 
               <textarea class="form-control"  name="long_description"
               placeholder="Descripcion extensa del producto" rows="5">
+              {{ old('long_description')}}
               </textarea>
               <button class="btn btn-primary">Registrar Producto</button>
+              <a href="{{url('/admin/products')}}" class="btn btn-default">Cancelar</a>
             </form>
           </div>
 

@@ -19,6 +19,25 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
+
+      //validar los datos
+      $messages = [
+        'name.required' => 'Es necesario ingresar un nombre para el producto.',
+        'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',
+        'description.required'=>'La descripcion corta es un campo obligatorio.',
+        'description.max'=>'La descripcion corta solo admite hasta 200 caracteres.',
+        'price.required'=>'Es obligatorio definir un precio para el producto.',
+        'price.numeric'=>'Ingrese un precio valido.',
+        'price.min'=>'No se admiten valores negativos.'
+      ];
+      $rules = [
+        'name'=> 'required|min:3',
+        'description' => 'required|max:200',
+        'price' => 'required|numeric|min:0'
+
+      ];
+      $this->validate($request, $rules,$messages);
+
       //registrar el nuevo producto
       //dd($request->all());
       $product = new Product();
@@ -40,6 +59,27 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id){
+      //validar los datos
+      $messages = [
+        'name.required' => 'Es necesario ingresar un nombre para el producto.',
+        'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',
+        'description.required'=>'La descripcion corta es un campo obligatorio.',
+        'description.max'=>'La descripcion corta solo admite hasta 200 caracteres.',
+        'price.required'=>'Es obligatorio definir un precio para el producto.',
+        'price.numeric'=>'Ingrese un precio valido.',
+        'price.min'=>'No se admiten valores negativos.'
+      ];
+      $rules = [
+        'name'=> 'required|min:3',
+        'description' => 'required|max:200',
+        'price' => 'required|numeric|min:0'
+
+      ];
+      $this->validate($request, $rules,$messages);
+
+
+
+
       //registrar el nuevo producto
       //dd($request->all());
       $product =  Product::find($id);
