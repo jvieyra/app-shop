@@ -49,6 +49,11 @@
 				            {{ Auth::user()->name }} <span class="caret"></span>
 				        </a>
 					        <ul class="dropdown-menu">
+									@if (auth()->user()->admin)
+										<li>
+											<a href="{{ url('/admin/products') }}">Gestionar Productos</a>
+										</li>
+									@endif
 				            <li>
 			                <a href="{{ route('logout') }}"
 			                    onclick="event.preventDefault();
