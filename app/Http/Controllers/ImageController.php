@@ -12,7 +12,7 @@ class ImageController extends Controller
     //
     public function index($id){
       $product = Product::find($id);
-      $images = $product->images;
+      $images = $product->images()->orderBy('featured','desc')->get();
       return view('admin.products.images.index')
                   ->with(compact('product','images'));
     }
@@ -43,7 +43,7 @@ class ImageController extends Controller
       if(substr($productImage->image, 0, 4) === "http"){
         $deleted = true;
       }else{
-        $fullPath = public_path().'\images\products'.$productImage->image;
+        $fullPath = public_path().'/images/products/'.$productImage->image;
         //dd($fullPath);
         $deleted = File::delete($fullPath);
       }
@@ -56,5 +56,19 @@ class ImageController extends Controller
 
       //eliminar la base de datos.
 
+    }
+
+
+    public function select($id, $image){
+
+      ProductImage::where('product_id',$id)->update([
+        'featured' => false
+      ]);
+
+      $productImage = ProductImage::find($image);
+      $productImage->featured = true;
+      $productImage->save();
+
+      return back();
     }
 }
