@@ -2,6 +2,26 @@
 @section('title','Bienvenido')
 
 @section('body-class','landing-page')
+@section('styles')
+  <style media="screen">
+    .team .row .col-md-4{
+      margin-bottom: 5em;
+    }
+
+    .row {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap:wrap;
+    }
+
+    .row > [class*='col-']{
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+@endsection
 
 @section('content')
 
@@ -71,15 +91,18 @@
                 <div class="col-md-4">
                   <div class="team-player">
                     <img src="{{ $product->featured_image_url }}" alt="Thumbnail Image" class="img-raised img-circle">
-                    <h4 class="title">{{ $product->name }}<br />
+                    <h4 class="title">
+                      <a href="{{ url('/products/'.$product->id )}}"> {{ $product->name }} </a><br />
+                      <br>
                       <small class="text-muted">{{ $product->category->name }}</small>
                     </h4>
                     <p class="description">{{ $product->description }}</p>
-                      <a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
-                      <a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-linkedin"></i></a>
                     </div>
 	                </div>
                 @endforeach
+                </div>
+                <div class="text-center">
+                  {{ $products->links()}}
                 </div>
               </div>
             </div>
