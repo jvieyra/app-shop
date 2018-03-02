@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}','ProductController@show');
 
-
+Route::post('/cart','CartDetailController@store');//register
 
 //middleware para auth, admin.
 
