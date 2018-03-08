@@ -36,9 +36,19 @@ class User extends Authenticatable
     }
 
     //accessor cart_id
-    public function getCartIdAttribute(){
+    public function getCartAttribute(){
       //todos los carritos asociados al usuario.
-      $this->carts()->where('status','Active')->first();
+      $cart = $this->carts()->where('status','Active')->first();
+      if($cart){
+        return $cart;
+      }
+
+      $cart = new Cart();
+      $cart->status = "Active";
+      $cart->user_id = $this->id;
+      $cart->save();
+
+      return $cart;
     }
 
 }
