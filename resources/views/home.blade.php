@@ -13,8 +13,6 @@
   			<div class="container">
   	      <div class="section">
             <h2 class="title text-center">Dashboard</h2>
-
-
           </div>
           <ul class="nav nav-pills nav-pills-primary" role="tablist">
 	<li class="active">

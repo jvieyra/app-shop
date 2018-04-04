@@ -19,6 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}','ProductController@show');
 
 Route::post('/cart','CartDetailController@store');//register
+Route::delete('/cart','CartDetailController@destroy');//register
 
 //middleware para auth, admin.
 
