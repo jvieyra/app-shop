@@ -9,26 +9,35 @@
 
   <div class="main main-raised">
     <div class="profile-content">
-            <div class="container">
-                <div class="row">
-                    <div class="profile">
-                        <div class="avatar">
-                            <img src="{{ $product->featured_image_url }}" alt="Circle Image" class="img-circle img-responsive img-raised">
-                        </div>
-                        <div class="name">
-                            <h3 class="title">{{ $product->name }}</h3>
-                            <h6>{{ $product->category->name }}</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="description text-center">
-                  <p>{{ $product->long_description }} </p>
-                </div>
-                <div class="text-center">
-                  <button class="btn btn-primary btn-round " data-toggle="modal" data-target="#modalAddToCart">
-                     <i class="material-icons">add</i> Añadir al carrito de compras.
-                  </button>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="profile">
+            <div class="avatar">
+              <img src="{{ $product->featured_image_url }}" alt="Circle Image" class="img-circle img-responsive img-raised">
+            </div>
+            <div class="name">
+              <h3 class="title">{{ $product->name }}</h3>
+              <h6>{{ $product->category->name }}</h6>
+            </div>
+            @if(session('notification'))
+              <div class="alert alert-success">
+                {{ session('notification') }}
+              </div>
+            @endif
+          </div>
+        </div>
+        <div class="description text-center">
+          <p>{{ $product->long_description }} </p>
+        </div>
+        <!-- boton para añadir pedido -->
+        <div class="text-center">
+          <form class="" action="{{ url('/order')}}" method="post">
+            {{ csrf_field() }}
+            <button class="btn btn-primary btn-round " data-toggle="modal" data-target="#modalAddToCart">
+               <i class="material-icons">add</i> Añadir al carrito de compras.
+            </button>
+          </form>
+        </div>
 
 
 
